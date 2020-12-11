@@ -3,6 +3,7 @@ package class01_02;
 public class Code02_EvenTimesOddTimes {
 
 	// arr中，只有一种数，出现奇数次
+	// 思路：利用异或运算的特性，相同的
 	public static void printOddTimesNum1(int[] arr) {
 		int eor = 0;
 		for (int i = 0; i < arr.length; i++) {
@@ -10,6 +11,29 @@ public class Code02_EvenTimesOddTimes {
 		}
 		System.out.println(eor);
 	}
+
+	public static void printOddTimesNum3(){
+		int []arr = {1,2,2,3,3,5};
+		int eor = 0 ;
+		for(int i = 0;i < arr.length ; i++){
+			eor ^= arr[i];
+		}
+
+		int eorTmp = eor & (-eor);
+		int one = 0;
+		for(int i = 0;i < arr.length ; i++){
+			if( (arr[i] & eorTmp) != 0)
+				one ^= arr[i];
+		}
+
+		int two = eor ^ one;
+
+		System.out.println(one + " " + two);
+
+
+
+	}
+
 
 	// arr中，有两种数，出现奇数次
 	public static void printOddTimesNum2(int[] arr) {
@@ -62,6 +86,10 @@ public class Code02_EvenTimesOddTimes {
 	
 	
 	public static void main(String[] args) {
+		printOddTimesNum3();
+
+
+
 		int a = 5;
 		int b = 7;
 
