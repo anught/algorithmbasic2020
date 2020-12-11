@@ -1,5 +1,6 @@
 package class01_02;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -23,6 +24,30 @@ public class Code03_KM {
 	}
 
 	public static HashMap<Integer, Integer> map = new HashMap<>();
+
+	public static int onlyKtimes(int []arr, int k, int m ){
+		System.out.println(arr);
+
+		int t[] = new int[32];
+		for(int one :arr){
+			for (int i = 0; i < 32; i++){
+//				if(( one & (1<<i)) != 0){
+//					t[i] ++;
+//				}
+				// 或者使用这一行就行
+				t[i] += (one>>i) & 1;
+			}
+		}
+
+		int ans = 0;
+		for(int i = 0; i < 32;i++){
+			if(t[i] % m != 0){
+				ans += (1<<i);
+			}
+		}
+
+		return  ans;
+	}
 
 	// 请保证arr中，只有一种数出现了K次，其他数都出现了M次
 	public static int onlyKTimes(int[] arr, int k, int m) {
@@ -114,6 +139,13 @@ public class Code03_KM {
 	}
 
 	public static void main(String[] args) {
+		System.out.println(onlyKtimes(new int[]{3,3,3,5,5,1,1,1,7,7,7},2,3));
+		try {
+			System.in.read();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		int kinds = 5;
 		int range = 30;
 		int testTime = 100000;
